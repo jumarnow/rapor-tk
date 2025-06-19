@@ -27,10 +27,10 @@
                                 @if (isset($tahunAjaran))
                                     @method('PUT')
                                 @endif
-                                <div class="card-body">
-                                    <div class="form-group row">
+                            <div class="card-body">
+                                <div class="form-group row">
                                         <label for="kode" class="col-sm-3 col-form-label">Kode</label>
-                                        <div class="col-sm-9">
+                                    <div class="col-sm-9">
                                             <input type="text" class="form-control @error('kode') is-invalid @enderror" 
                                                 id="kode" name="kode" placeholder="Contoh: 2023/2024" 
                                                 value="{{ isset($tahunAjaran) ? $tahunAjaran->kode : old('kode') }}">
@@ -42,9 +42,9 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
+                                <div class="form-group row">
                                         <label for="nama" class="col-sm-3 col-form-label">Nama</label>
-                                        <div class="col-sm-9">
+                                    <div class="col-sm-9">
                                             <input type="text" class="form-control @error('nama') is-invalid @enderror" 
                                                 id="nama" name="nama" placeholder="Contoh: Tahun Ajaran 2023/2024" 
                                                 value="{{ isset($tahunAjaran) ? $tahunAjaran->nama : old('nama') }}">
@@ -56,24 +56,24 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
+                                <div class="form-group row">
                                         <label for="status" class="col-sm-3 col-form-label">Status</label>
-                                        <div class="col-sm-9">
+                                    <div class="col-sm-9">
                                             <select class="form-control @error('status') is-invalid @enderror" id="status" name="status">
                                                 <option value="">Pilih Status</option>
                                                 <option value="aktif" {{ (isset($tahunAjaran) && $tahunAjaran->status == 'aktif') || old('status') == 'aktif' ? 'selected' : '' }}>Aktif</option>
                                                 <option value="tidak_aktif" {{ (isset($tahunAjaran) && $tahunAjaran->status == 'tidak_aktif') || old('status') == 'tidak_aktif' ? 'selected' : '' }}>Tidak Aktif</option>
-                                            </select>
+                                        </select>
                                             @error('status')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
                                             @enderror
-                                        </div>
                                     </div>
                                 </div>
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
                                     <a href="{{ route('tahun-ajaran.index') }}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
                                 </div>
                             </form>
@@ -87,6 +87,6 @@
 
 @push('scripts')
     <!-- JS Libraies -->
-    
+
     <!-- Page Specific JS File -->
 @endpush

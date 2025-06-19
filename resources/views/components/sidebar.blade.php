@@ -14,11 +14,35 @@
                     href="{{ url('/') }}"><i class="fas fa-home"></i> <span>Dashboard</span></a>
             </li>
             <li class="menu-header">Akademik</li>
-            <li class="{{ Request::is('seting-nilai*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('seting-nilai') }}">
-                    <i class="fas fa-calculator"></i> <span>Seting Nilai</span>
-                </a>
+            <li class="nav-item dropdown">
+                <a href="#"
+                    class="nav-link has-dropdown"><i class="fas fa-calculator"></i><span>Setting Nilai</span></a>
+                <ul class="dropdown-menu">
+                    <li class='{{ Request::is('nilai-rapor-setting*') ? 'active' : '' }}'>
+                        <a class="nav-link"
+                            href="{{ url('nilai-rapor-setting') }}">Nilai Rapor</a>
+                    </li>
+                    <li class="{{ Request::is('nilai-hafalan-setting*') ? 'active' : '' }}">
+                        <a class="nav-link"
+                            href="{{ url('nilai-hafalan-setting') }}">Nilai Hafalan</a>
+                    </li>
+                </ul>
             </li>
+            <li class="nav-item dropdown">
+                <a href="#"
+                    class="nav-link has-dropdown"><i class="fas fa-pencil-ruler"></i><span>Input Nilai</span></a>
+                <ul class="dropdown-menu">
+                    <li class='{{ Request::is('nilai-rapor-input*') ? 'active' : '' }}'>
+                        <a class="nav-link"
+                            href="{{ url('nilai-rapor-input') }}">Nilai Rapor</a>
+                    </li>
+                    <li class="{{ Request::is('nilai-hafalan-in*') ? 'active' : '' }}">
+                        <a class="nav-link"
+                            href="{{ url('nilai-hafalan-in') }}">Nilai Hafalan</a>
+                    </li>
+                </ul>
+            </li>
+            @if (auth()->user()->role == 'admin')
             <li class="menu-header">Data Master</li>
             <li class="{{ Request::is('user*') ? 'active' : '' }}">
                 <a class="nav-link"
@@ -49,6 +73,7 @@
                     <i class="fas fa-building"></i> <span>Sekolah</span>
                 </a>
             </li>
+            @endif
             <li class="nav-item dropdown">
                 <a href="#"
                     class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>

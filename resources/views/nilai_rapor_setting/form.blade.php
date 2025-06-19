@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Form Setting Nilai')
+@section('title', 'Form Setting Nilai Rapor')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -11,11 +11,11 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>{{ isset($setingNilai) ? 'Edit' : 'Tambah' }} Setting Nilai</h1>
+                <h1>{{ isset($nilaiRaporSetting) ? 'Edit' : 'Tambah' }} Setting Nilai Rapor</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                     <div class="breadcrumb-item"><a href="#">Data Master</a></div>
-                    <div class="breadcrumb-item">{{ isset($setingNilai) ? 'Edit' : 'Tambah' }} Setting Nilai</div>
+                    <div class="breadcrumb-item">{{ isset($nilaiRaporSetting) ? 'Edit' : 'Tambah' }} Setting Nilai Rapor</div>
                 </div>
             </div>
 
@@ -23,9 +23,9 @@
                 <div class="row">
                     <div class="col-12 col-md-12 col-lg-12">
                         <div class="card">
-                            <form action="{{ isset($setingNilai) ? route('seting-nilai.update', $setingNilai->id) : route('seting-nilai.store') }}" method="POST">
+                            <form action="{{ isset($nilaiRaporSetting) ? route('nilai-rapor-setting.update', $nilaiRaporSetting->id) : route('nilai-rapor-setting.store') }}" method="POST">
                                 @csrf
-                                @if (isset($setingNilai))
+                                @if (isset($nilaiRaporSetting))
                                     @method('PUT')
                                 @endif
                                 <div class="card-body">
@@ -33,8 +33,8 @@
                                         <label for="nama" class="col-sm-3 col-form-label">Nama Setting</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control @error('nama') is-invalid @enderror" 
-                                                id="nama" name="nama" placeholder="Masukkan nama setting nilai" 
-                                                value="{{ isset($setingNilai) ? $setingNilai->nama : old('nama') }}">
+                                                id="nama" name="nama" placeholder="Masukkan nama setting nilai rapor" 
+                                                value="{{ isset($nilaiRaporSetting) ? $nilaiRaporSetting->nama : old('nama') }}">
                                             @error('nama')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -51,7 +51,7 @@
                                                 <option value="">Pilih Tahun Ajaran</option>
                                                 @foreach ($tahunAjarans as $ta)
                                                     <option value="{{ $ta->id }}" 
-                                                        {{ (isset($setingNilai) && $setingNilai->tahun_ajaran_id == $ta->id) || old('tahun_ajaran_id') == $ta->id ? 'selected' : '' }}>
+                                                        {{ (isset($nilaiRaporSetting) && $nilaiRaporSetting->tahun_ajaran_id == $ta->id) || old('tahun_ajaran_id') == $ta->id ? 'selected' : '' }}>
                                                         {{ $ta->nama }}
                                                     </option>
                                                 @endforeach
@@ -63,10 +63,34 @@
                                             @enderror
                                         </div>
                                     </div>
+
+                                    <div class="form-group row">
+                                        <label for="kelas_id" class="col-sm-3 col-form-label">Kelas</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control select2 @error('kelas_id') is-invalid @enderror" id="kelas_id" name="kelas_id[]" multiple>
+                                                @foreach ($kelas as $k)
+                                                    <option value="{{ $k->id }}"
+                                                        @if(isset($selectedKelas))
+                                                            {{ in_array($k->id, $selectedKelas) ? 'selected' : '' }}
+                                                        @elseif(is_array(old('kelas_id')))
+                                                            {{ in_array($k->id, old('kelas_id', [])) ? 'selected' : '' }}
+                                                        @endif
+                                                    >
+                                                        {{ $k->nama }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('kelas_id')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
-                                    <a href="{{ route('seting-nilai.index') }}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
+                                    <a href="{{ route('nilai-rapor-setting.index') }}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
                                 </div>
                             </form>
                         </div>

@@ -21,5 +21,12 @@ class UserSeeder extends Seeder
             'password' => Hash::make('admin'),
             'role' => 'admin',
         ]);
+        User::create([
+            'name' => 'Guru',
+            'username' => 'guru',
+            'email' => 'guru@gmail.com',
+            'password' => Hash::make('guru'),
+            'role' => 'guru',
+        ]);
     }
 }

@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'guru_id',
     ];
 
     /**
@@ -42,5 +43,14 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'password' => 'hashed',
     ];
+
+    /**
+     * Get the guru that owns the user.
+     */
+    public function guru()
+    {
+        return $this->belongsTo(Guru::class);
+    }
 }

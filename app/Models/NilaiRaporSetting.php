@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SetingNilai extends Model
+class NilaiRaporSetting extends Model
 {
     use HasFactory;
 
@@ -13,6 +13,11 @@ class SetingNilai extends Model
 
     public function tahunAjaran()
     {
-        return $this->belongsTo(TahunAjaran::class, 'tahun_ajaran_id');
+        return $this->belongsTo(TahunAjaran::class);
     }
-} 
+
+    public function nilaiRaporSettingKelas()
+    {
+        return $this->hasMany(NilaiRaporSettingKelas::class);
+    }
+}

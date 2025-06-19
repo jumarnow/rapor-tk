@@ -31,8 +31,8 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped" id="table-1">
-                                        <thead>
-                                            <tr>
+                                    <thead>
+                                        <tr>
                                                 <th class="text-center">No</th>
                                                 <th>Nama</th>
                                                 <th>Alamat</th>
@@ -40,11 +40,11 @@
                                                 <th>Foto</th>
                                                 <th>Scan TTD</th>
                                                 <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
                                             @foreach ($gurus as $guru)
-                                                <tr>
+                                            <tr>
                                                     <td class="text-center">{{ $loop->iteration }}</td>
                                                     <td>{{ $guru->nama }}</td>
                                                     <td>{{ $guru->alamat }}</td>
@@ -63,7 +63,7 @@
                                                             <span class="text-muted">Tidak ada tanda tangan</span>
                                                         @endif
                                                     </td>
-                                                    <td>
+                                                <td>
                                                         <a href="{{ route('guru.edit', $guru->id) }}" class="btn btn-warning btn-sm">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
@@ -74,11 +74,11 @@
                                                                 <i class="fas fa-trash"></i>
                                                             </button>
                                                         </form>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                                </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
 @push('scripts')
     <!-- JS Libraies -->
     <script src="{{ asset('library/datatables/media/js/jquery.dataTables.min.js') }}"></script>
-    
+
     <!-- Page Specific JS File -->
     <script>
         $("#table-1").dataTable();

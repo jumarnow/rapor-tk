@@ -9,8 +9,10 @@ use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\TahunAjaranController;
 use App\Http\Controllers\SetingNilaiController;
+use App\Http\Controllers\TahunAjaranController;
+use App\Http\Controllers\NilaiRaporSettingController;
+use App\Http\Controllers\NilaiHafalanSettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +37,9 @@ Route::group(['middleware' => 'auth'], function () {
     ]);
     Route::resource('tahun-ajaran', TahunAjaranController::class);
     Route::resource('sekolah', SekolahController::class);
-    Route::resource('seting-nilai', SetingNilaiController::class);
+    // Route::resource('seting-nilai', SetingNilaiController::class);
+    Route::resource('nilai-rapor-setting', NilaiRaporSettingController::class);
+    Route::resource('nilai-hafalan-setting', NilaiHafalanSettingController::class);
 });
 
 // Route::redirect('/', '/dashboard-general-dashboard');
